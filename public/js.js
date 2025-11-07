@@ -7,7 +7,10 @@ let userHasChangedColor = false;
 // Load icons from demo.html
 async function loadIcons() {
   try {
-    const response = await fetch("./../src/bootstrap-icons/demo.html");
+    const response = await fetch("./src/bootstrap-icons/demo.html");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
     const html = await response.text();
 
     // Create a temporary DOM element to parse HTML
