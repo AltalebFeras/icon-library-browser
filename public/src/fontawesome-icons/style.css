@@ -1,10 +1,6 @@
 @font-face {
   font-family: 'fontawesome';
-  src:  url('fonts/fontawesome.eot?p17rh4');
-  src:  url('fonts/fontawesome.eot?p17rh4#iefix') format('embedded-opentype'),
-    url('fonts/fontawesome.ttf?p17rh4') format('truetype'),
-    url('fonts/fontawesome.woff?p17rh4') format('woff'),
-    url('fonts/fontawesome.svg?p17rh4#fontawesome') format('svg');
+  src:  url('fonts/fontawesome.woff2?p17rh4') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;
