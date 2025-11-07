@@ -108,19 +108,6 @@
             font-family: 'Courier New', monospace;
         }
 
-        .warning-box {
-            background: #fff3cd;
-            border: 2px solid #ffeaa7;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-
-        .warning-box::before {
-            content: '⚠️ ';
-            font-weight: bold;
-        }
-
         .info-box {
             background: #d1ecf1;
             border: 2px solid #bee5eb;
@@ -153,6 +140,26 @@
             transform: translateY(-2px);
             text-decoration: none;
             color: var(--white);
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        footer .footer-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -294,8 +301,8 @@
         </div>
     </div>
     <footer>
-        <div class="container">
-            <p>&copy; 2023 My Icon Library. All rights reserved.</p>
+        <div class="footer-container">
+            <p>&copy; 2025 My Icon Library. All rights reserved.</p>
         </div>
     </footer>
 </body>
