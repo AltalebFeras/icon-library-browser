@@ -13,9 +13,9 @@
       "id": "fontawesome",
       "name": "Font Awesome",
       "description": "The world's most popular icon toolkit",
-      "cssPath": "./src/fontawesome/style.css",
-      "demoPath": "./src/fontawesome/demo.html",
-      "count": 0,
+      "cssPath": "./src/fontawesome-icons/style.css",
+      "demoPath": "./src/fontawesome-icons/demo.html",
+      "count": 1002,
       "prefix": "fa"
     },
     {
