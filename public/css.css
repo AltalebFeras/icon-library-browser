@@ -76,6 +76,33 @@ body {
     font-weight: 300;
 }
 
+.header-nav {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+}
+
+.docs-link {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.docs-link:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    text-decoration: none;
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
 .controls {
     padding: 2rem;
     background: linear-gradient(to bottom, #fafafa 0%, #ffffff 100%);

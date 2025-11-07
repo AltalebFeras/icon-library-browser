@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Icon Library Browser</title>
+    <link rel="stylesheet" href="./css.css">
+    <style>
+        .docs-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--white);
+            min-height: 100vh;
+        }
+
+        .docs-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .docs-section {
+            margin-bottom: 3rem;
+        }
+
+        .docs-section h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .docs-section h3 {
+            color: var(--dark);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .code-block {
+            color: var(--white);
+            background: #070707;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .download-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--success-color), #45a049);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 1rem 0;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+        }
+
+        .step-item {
+            counter-increment: step-counter;
+            margin-bottom: 2rem;
+            padding-left: 3rem;
+            position: relative;
+        }
+
+        .step-item::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--primary-color);
+            color: var(--white);
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .file-structure {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .warning-box::before {
+            content: '⚠️ ';
+            font-weight: bold;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .info-box::before {
+            content: 'ℹ️ ';
+            font-weight: bold;
+        }
+
+        .back-to-browser {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .back-to-browser:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: var(--white);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="./index.html" class="back-to-browser">← Back to Browser</a>
+
+    <div class="docs-container">
+        <div class="docs-header">
+            <h1>📚 Icon Library Browser Documentation</h1>
+            <p>Complete guide on how to use and install icon libraries</p>
+        </div>
+
+        <div class="docs-section">
+            <h2>🎯 What is Icon Library Browser?</h2>
+            <p>Icon Library Browser is a web-based tool that helps you browse, search, and generate code for various
+                icon libraries. It provides an easy way to find the perfect icons for your projects and get the exact
+                CSS/HTML code you need.</p>
+
+            <h3>Features:</h3>
+            <ul>
+                <li>📖 Browse multiple icon libraries in one place</li>
+                <li>🔍 Search icons by name</li>
+                <li>📋 Copy icon class names instantly</li>
+                <li>🎨 Generate styled HTML with custom sizes and colors</li>
+                <li>⚡ Live preview of your customizations</li>
+            </ul>
+        </div>
+
+        <div class="docs-section">
+            <h2>📦 How to Install Icon Libraries</h2>
+
+            <div class="step-list">
+                <div class="step-item">
+                    <h3>Download the Icon Library</h3>
+                    <p>Click on the download link for your desired icon library:</p>
+
+                    <a href="https://github.com/twbs/icons/releases/latest/download/bootstrap-icons-1.11.1.zip"
+                        class="download-button" target="_blank">
+                        📥 Download Bootstrap Icons
+                    </a>
+
+                    <div class="info-box">
+                        <strong>Note:</strong> This example uses Bootstrap Icons. The process is similar for other icon
+                        libraries.
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <h3>Extract the ZIP File</h3>
+                    <p>Unzip the downloaded file to access the icon library contents. You should see files like:</p>
+
+                    <div class="file-structure">
+                        bootstrap-icons-1.11.1/<br>
+                        ├── 📁 fonts/<br>
+                        │ ├── icomoon.eot<br>
+                        │ ├── icomoon.svg<br>
+                        │ ├── icomoon.ttf<br>
+                        │ └── icomoon.woff<br>
+                        ├── 📄 style.css<br>
+                        └── 📄 demo.html
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <h3>Copy Files to Your Project</h3>
+                    <p>Create an <code>icons</code> folder in your project's <code>public</code> directory and copy the
+                        library files:</p>
+
+                    <div class="file-structure">
+                        your-project/<br>
+                        ├── 📁 public/<br>
+                        │ ├── 📁 icons/<br>
+                        │ │ ├── 📁 bootstrap-icons/<br>
+                        │ │ │ ├── 📁 fonts/<br>
+                        │ │ │ │ ├── icomoon.eot<br>
+                        │ │ │ │ ├── icomoon.svg<br>
+                        │ │ │ │ ├── icomoon.ttf<br>
+                        │ │ │ │ └── icomoon.woff<br>
+                        │ │ │ ├── 📄 style.css<br>
+                        │ │ │ └── 📄 demo.html<br>
+                        │ │ └── 📁 other-icon-libraries/<br>
+                        │ ├── 📄 index.html<br>
+                        │ └── ...<br>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <h3>Link CSS in Your HTML</h3>
+                    <p>Add the CSS link to your HTML file's <code>&lt;head&gt;</code> section:</p>
+
+                    <div class="code-block">
+
+                        &lt;!-- Bootstrap Icons CSS --&gt;
+                        <br>
+                        &lt;link rel="stylesheet" href="./icons/bootstrap-icons/bootstrap-icons.css"&gt;
+
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <h3>Use Icons in Your HTML</h3>
+                    <p>Now you can use icons in your HTML with the class names:</p>
+
+                    <div class="code-block">
+                        &lt;!-- Basic icon usage --&gt;<br>
+                        &lt;i class="icon-airplane-engines1"&gt;&lt;/i&gt; <br>
+
+                        &lt;!-- With custom styling --&gt;<br>
+                        &lt;i class="icon-airplane-engines1" style="font-size: 32px; color: gold;"&gt;&lt;/i&gt; <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="docs-section">
+            <h2>🔧 How to Use the Icon Browser</h2>
+
+            <h3>1. Browse Icon Libraries</h3>
+            <p>On the main page, you'll see available icon libraries. Click on any library card to browse its icons.</p>
+
+            <h3>2. Search for Icons</h3>
+            <p>Use the search box to find specific icons by name. The search is real-time and case-insensitive.</p>
+
+            <h3>3. Copy Icon Classes</h3>
+            <p>Click the "📋 Copy Class" button to copy the icon's CSS class name to your clipboard.</p>
+
+            <h3>4. Generate Basic HTML</h3>
+            <p>Click "🔧 Generate HTML" to copy ready-to-use HTML code for the icon.</p>
+
+            <h3>5. Create Styled Icons</h3>
+            <p>Click "🎨 Generate Styled" to open the customization modal where you can:</p>
+            <ul>
+                <li>Adjust font size (10px - 500px)</li>
+                <li>Change icon color</li>
+                <li>Preview changes in real-time</li>
+                <li>Copy the styled HTML code</li>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 My Icon Library. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
