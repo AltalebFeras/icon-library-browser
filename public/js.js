@@ -1,13 +1,96 @@
 // Global variables
 let allIcons = [];
 let currentIcon = "";
+let currentGroup = null;
+let iconGroups = [];
 const DEFAULT_SIZE = 32;
 let userHasChangedColor = false;
 
-// Load icons from demo.html
-async function loadIcons() {
+// Load icon groups configuration
+async function loadIconGroups() {
   try {
-    const response = await fetch("./src/bootstrap-icons/demo.html");
+    const response = await fetch("./config.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const config = await response.json();
+    iconGroups = config.iconGroups;
+    displayIconGroups();
+  } catch (error) {
+    console.error("Error loading icon groups:", error);
+    showToast("Error loading icon libraries");
+  }
+}
+
+// Display icon groups on main page
+function displayIconGroups() {
+  const groupsGrid = document.getElementById("groupsGrid");
+  
+  groupsGrid.innerHTML = iconGroups.map(group => `
+    <div class="group-card" onclick="selectIconGroup('${group.id}')">
+      <div class="group-icon">
+        <i class="icon-${group.id === 'bootstrap-icons' ? 'star' : 'folder'}"></i>
+      </div>
+      <h3>${group.name}</h3>
+      <p>${group.description}</p>
+      <div class="group-stats">
+        <span class="icon-count">${group.count || 0} icons</span>
+        <span class="status ${group.count > 0 ? 'available' : 'coming-soon'}">
+          ${group.count > 0 ? 'Available' : 'Coming Soon'}
+        </span>
+      </div>
+    </div>
+  `).join("");
+}
+
+// Select an icon group and load its icons
+async function selectIconGroup(groupId) {
+  currentGroup = iconGroups.find(group => group.id === groupId);
+  
+  if (!currentGroup) {
+    showToast("Icon group not found");
+    return;
+  }
+
+  if (currentGroup.count === 0) {
+    showToast("This icon library is coming soon!");
+    return;
+  }
+
+  // Load CSS for the selected group
+  await loadGroupCSS(currentGroup.cssPath);
+  
+  // Show browser section and hide groups section
+  document.getElementById("groupsSection").style.display = "none";
+  document.getElementById("browserSection").style.display = "block";
+  document.getElementById("currentLibraryName").textContent = currentGroup.name;
+  
+  // Load icons for the selected group
+  await loadIconsFromGroup(currentGroup);
+}
+
+// Load CSS file for the icon group
+function loadGroupCSS(cssPath) {
+  return new Promise((resolve, reject) => {
+    // Remove any existing icon library CSS
+    const existingLinks = document.querySelectorAll('link[data-icon-library]');
+    existingLinks.forEach(link => link.remove());
+    
+    // Add new CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = cssPath;
+    link.setAttribute('data-icon-library', 'true');
+    link.onload = resolve;
+    link.onerror = reject;
+    document.head.appendChild(link);
+  });
+}
+
+// Load icons from a specific group
+async function loadIconsFromGroup(group) {
+  try {
+    const response = await fetch(group.demoPath);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -195,6 +278,9 @@ function updatePreview() {
 
 // Setup event listeners
 function setupEventListeners() {
+  // Back button
+  document.getElementById("backBtn").addEventListener("click", goBackToGroups);
+
   // Close modal
   document.getElementById("closeModal").addEventListener("click", () => {
     document.getElementById("styleModal").classList.remove("active");
@@ -295,8 +381,24 @@ function showToast(message) {
   }, 3000);
 }
 
+// Go back to groups selection
+function goBackToGroups() {
+  document.getElementById("groupsSection").style.display = "block";
+  document.getElementById("browserSection").style.display = "none";
+  
+  // Clear search
+  document.getElementById("searchInput").value = "";
+  
+  // Remove current group CSS
+  const existingLinks = document.querySelectorAll('link[data-icon-library]');
+  existingLinks.forEach(link => link.remove());
+  
+  currentGroup = null;
+  allIcons = [];
+}
+
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", () => {
-  loadIcons();
+  loadIconGroups();
   setupEventListeners();
 });

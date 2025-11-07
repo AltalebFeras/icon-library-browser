@@ -1,0 +1,44 @@
+{
+  "iconGroups": [
+    {
+      "id": "bootstrap-icons",
+      "name": "Bootstrap Icons",
+      "description": "Popular Bootstrap icon set with 1000+ icons",
+      "cssPath": "./src/bootstrap-icons/style.css",
+      "demoPath": "./src/bootstrap-icons/demo.html",
+      "count": 4158
+    },
+    {
+      "id": "fontawesome",
+      "name": "Font Awesome",
+      "description": "The world's most popular icon toolkit",
+      "cssPath": "./src/fontawesome/style.css",
+      "demoPath": "./src/fontawesome/demo.html",
+      "count": 0
+    },
+    {
+      "id": "material-icons",
+      "name": "Material Icons",
+      "description": "Google's Material Design icons",
+      "cssPath": "./src/material-icons/style.css",
+      "demoPath": "./src/material-icons/demo.html",
+      "count": 0
+    },
+    {
+      "id": "feather-icons",
+      "name": "Feather Icons",
+      "description": "Simply beautiful open source icons",
+      "cssPath": "./src/feather-icons/style.css",
+      "demoPath": "./src/feather-icons/demo.html",
+      "count": 0
+    },
+    {
+      "id": "brands-icons",
+      "name": "Brands Icons",
+      "description": "Premium icons for use in web, iOS, Android, and desktop apps",
+      "cssPath": "./src/brands-icons/style.css",
+      "demoPath": "./src/brands-icons/demo.html",
+      "count": 934
+    }
+  ]
+}

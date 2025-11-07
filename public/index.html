@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Icon Library Browser</title>
-    <link rel="stylesheet" href="./src/bootstrap-icons/style.css">
     <link rel="stylesheet" href="./css.css">
-   <script src="./js.js"></script>
+    <script src="./js.js"></script>
 </head>
 
 <body>
@@ -16,32 +15,52 @@
             <h1>🎨 Icon Library Browser</h1>
             <p>Browse, Search, and Copy Icon Classes</p>
         </div>
-        <div class="controls">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search icons by name..." />
-                <button id="clearBtn">Clear</button>
+
+        <!-- Icon Groups Selection -->
+        <div class="groups-section" id="groupsSection">
+            <div class="section-header">
+                <h2>Choose Icon Library</h2>
+                <p>Select an icon library to browse its icons</p>
             </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <strong id="totalCount">0</strong> Total Icons
-                </div>
-                <div class="stat-item">
-                    <strong id="visibleCount">0</strong> Found
-                </div>
+            <div class="groups-grid" id="groupsGrid">
+                <!-- Groups will be loaded here -->
             </div>
         </div>
 
-        <div class="icons-grid" id="iconsGrid">
-            <!-- Icons will be dynamically loaded here -->
+        <!-- Icon Browser (hidden initially) -->
+        <div class="browser-section" id="browserSection" style="display: none;">
+            <div class="browser-header">
+                <button class="back-btn" id="backBtn">← Back to Libraries</button>
+                <h2 id="currentLibraryName">Icons</h2>
+            </div>
+
+            <div class="controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search icons by name..." />
+                    <button id="clearBtn">Clear</button>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <strong id="totalCount">0</strong> Total Icons
+                    </div>
+                    <div class="stat-item">
+                        <strong id="visibleCount">0</strong> Found
+                    </div>
+                </div>
+            </div>
+
+            <div class="icons-grid" id="iconsGrid">
+                <!-- Icons will be dynamically loaded here -->
+            </div>
         </div>
     </div>
 
+    <!-- ...existing modal code... -->
     <div class="modal" id="styleModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Generate Styled Icon</h2>
                 <button class="close-btn" id="closeModal">&times;</button>
-
             </div>
 
             <div class="preview-section">
@@ -76,7 +95,7 @@
                             style="background-color: transparent; border: 2px dashed #ddd;">Default</div>
                     </div>
                 </div>
-                    <div class="control-group">
+                <div class="control-group">
                     <label>
                         <span>Reset Color</span>
                     </label>
@@ -103,8 +122,6 @@
     </div>
 
     <div class="toast" id="toast"></div>
-
-    
 </body>
 
 </html>
