@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Library Browser</title>
+    <link rel="stylesheet" href="../src/bootstrap-icons/style.css">
+    <link rel="stylesheet" href="css.css">
+   <script src="js.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Icon Library Browser</h1>
+            <p>Browse, Search, and Copy Icon Classes</p>
+        </div>
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search icons by name..." />
+                <button id="clearBtn">Clear</button>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <strong id="totalCount">0</strong> Total Icons
+                </div>
+                <div class="stat-item">
+                    <strong id="visibleCount">0</strong> Found
+                </div>
+            </div>
+        </div>
+
+        <div class="icons-grid" id="iconsGrid">
+            <!-- Icons will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <div class="modal" id="styleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Generate Styled Icon</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+
+            </div>
+
+            <div class="preview-section">
+                <div class="preview-icon" id="previewIcon">
+                    <i class="icon-warning7"></i>
+                </div>
+            </div>
+
+            <div class="style-controls">
+                <div class="control-group">
+                    <label>
+                        <span>Font Size</span>
+                        <span class="size-display" id="sizeDisplay">32px</span>
+                    </label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="range" id="fontSize" value="32" min="10" max="500" step="1" style="flex: 1;">
+                        <input type="number" id="fontSizeNumber" value="32" min="10" max="500" step="1"
+                            style="width: 80px; padding: 8px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px;">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label>
+                        <span>Reset Size</span>
+                    </label>
+                    <button class="reset-btn" id="resetSize">Reset to 32px</button>
+                </div>
+                <div class="control-group">
+                    <label>Color</label>
+                    <div class="color-input-wrapper">
+                        <input type="color" id="iconColor" value="#000000">
+                        <div class="color-preview" id="colorPreview"
+                            style="background-color: transparent; border: 2px dashed #ddd;">Default</div>
+                    </div>
+                </div>
+                    <div class="control-group">
+                    <label>
+                        <span>Reset Color</span>
+                    </label>
+                    <button class="reset-btn" id="resetColor">Reset Color</button>
+                </div>
+            </div>
+
+            <div class="code-section">
+                <label>HTML Code:</label>
+                <div class="code-box">
+                    <textarea id="htmlCode" readonly></textarea>
+                    <button class="copy-code-btn" onclick="copyCode('htmlCode')">Copy</button>
+                </div>
+            </div>
+
+            <div class="code-section">
+                <label>Styled HTML Code:</label>
+                <div class="code-box">
+                    <textarea id="styledCode" readonly></textarea>
+                    <button class="copy-code-btn" onclick="copyCode('styledCode')">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    
+</body>
+
+</html>
