@@ -29,7 +29,7 @@ function displayIconGroups() {
   groupsGrid.innerHTML = iconGroups.map(group => `
     <div class="group-card" onclick="selectIconGroup('${group.id}')">
       <div class="group-icon">
-        <i class="icon-${group.id === 'bootstrap-icons' ? 'star' : 'folder'}"></i>
+        <i class="${group.prefix === 'bi' ? 'bi-star' : group.prefix === 'fa' ? 'fa-star' : 'icon-star'}"></i>
       </div>
       <h3>${group.name}</h3>
       <p>${group.description}</p>
@@ -103,13 +103,14 @@ async function loadIconsFromGroup(group) {
     // Extract icon classes from the demo.html
     const iconElements = doc.querySelectorAll(".glyph");
     const iconSet = new Set();
+    const prefix = group.prefix;
 
     iconElements.forEach((glyph) => {
       // Look for the icon class in various possible locations
       const iconSpan = glyph.querySelector(".mls");
       if (iconSpan) {
         const iconClass = iconSpan.textContent.trim();
-        if (iconClass && iconClass.startsWith("icon-")) {
+        if (iconClass && iconClass.startsWith(prefix)) {
           iconSet.add(iconClass);
         }
       }
@@ -119,7 +120,7 @@ async function loadIconsFromGroup(group) {
       if (iconDisplay && iconDisplay.className) {
         const classes = iconDisplay.className.split(" ");
         classes.forEach((cls) => {
-          if (cls.startsWith("icon-")) {
+          if (cls.startsWith(prefix)) {
             iconSet.add(cls);
           }
         });
@@ -130,22 +131,22 @@ async function loadIconsFromGroup(group) {
 
     // If no icons found, generate placeholder icons
     if (allIcons.length === 0) {
-      allIcons = generatePlaceholderIcons();
+      allIcons = generatePlaceholderIcons(prefix);
     }
 
     displayIcons(allIcons);
   } catch (error) {
     console.error("Error loading icons:", error);
-    allIcons = generatePlaceholderIcons();
+    allIcons = generatePlaceholderIcons(group.prefix);
     displayIcons(allIcons);
   }
 }
 
 // Generate placeholder icon names
-function generatePlaceholderIcons() {
+function generatePlaceholderIcons(prefix = "icon") {
   const icons = [];
   for (let i = 0; i < 50; i++) {
-    icons.push(`icon-placeholder-${i}`);
+    icons.push(`${prefix}-placeholder-${i}`);
   }
   return icons;
 }
