@@ -58,11 +58,14 @@
         </div>
     </div>
 
-    <!-- ...existing modal code... -->
-    <div class="modal" id="styleModal">
+    <!-- Single Modal for icon customization -->
+    <div class="modal" id="iconModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Generate Styled Icon</h2>
+                <div>
+                    <h2>Icon Configuration</h2>
+                    <p class="modal-icon-name" id="modalIconName">icon-name</p>
+                </div>
                 <button class="close-btn" id="closeModal">&times;</button>
             </div>
 
@@ -72,53 +75,61 @@
                 </div>
             </div>
 
-            <div class="style-controls">
-                <div class="control-group">
-                    <label>
-                        <span>Font Size</span>
-                        <span class="size-display" id="sizeDisplay">32px</span>
-                    </label>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="range" id="fontSize" value="32" min="10" max="500" step="1" style="flex: 1;">
-                        <input type="number" id="fontSizeNumber" value="32" min="10" max="500" step="1"
-                            style="width: 80px; padding: 8px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px;">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label>
-                        <span>Reset Size</span>
-                    </label>
-                    <button class="reset-btn" id="resetSize">Reset to 32px</button>
-                </div>
-                <div class="control-group">
-                    <label>Color</label>
-                    <div class="color-input-wrapper">
-                        <input type="color" id="iconColor" value="#000000">
-                        <div class="color-preview" id="colorPreview"
-                            style="background-color: transparent; border: 2px dashed #ddd;">Default</div>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label>
-                        <span>Reset Color</span>
-                    </label>
-                    <button class="reset-btn" id="resetColor">Reset Color</button>
+            <!-- Class Name & Copy Section -->
+            <div class="action-section">
+                <h3>Class Name</h3>
+                <div class="action-row">
+                    <code id="classDisplay" class="class-display">bi-1231</code>
+                    <button class="btn-copy" onclick="copyClass(currentIcon)">Copy</button>
                 </div>
             </div>
 
-            <div class="code-section">
-                <label>HTML Code:</label>
-                <div class="code-box">
-                    <textarea id="htmlCode" readonly></textarea>
-                    <button class="copy-code-btn" onclick="copyCode('htmlCode')">Copy</button>
+            <!-- Customization Section -->
+            <div class="action-section">
+                <h3>Customization</h3>
+                <div class="style-controls-compact">
+                    <div class="control-row">
+                        <label>Size</label>
+                        <div class="size-controls">
+                            <input type="range" id="fontSize" value="32" min="10" max="500" step="1">
+                            <input type="number" id="fontSizeNumber" value="32" min="10" max="500" step="1"
+                                class="size-input">
+                            <span class="size-display" id="sizeDisplay">32px</span>
+                        </div>
+                        <button class="btn-reset" id="resetSize">Reset</button>
+                    </div>
+
+                    <div class="control-row">
+                        <label>Color</label>
+                        <div class="color-controls">
+                            <input type="color" id="iconColor" value="#000000" class="color-input">
+                            <div class="color-preview" id="colorPreview">Default</div>
+                        </div>
+                        <button class="btn-reset" id="resetColor">Reset</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="code-section">
-                <label>Styled HTML Code:</label>
-                <div class="code-box">
-                    <textarea id="styledCode" readonly></textarea>
-                    <button class="copy-code-btn" onclick="copyCode('styledCode')">Copy</button>
+            <!-- Code Generation Section -->
+            <div class="action-section">
+                <h3>Generated Code</h3>
+                <div class="code-tabs">
+                    <button class="tab-btn active" onclick="switchTab('basic')">Basic HTML Tag</button>
+                    <button class="tab-btn" onclick="switchTab('styled')">Customized HTML Tag</button>
+                </div>
+                <div class="code-content">
+                    <div class="code-tab active" id="basicTab">
+                        <div class="code-row">
+                            <textarea id="htmlCode" readonly></textarea>
+                            <button class="btn-copy" onclick="copyCode('htmlCode')">Copy</button>
+                        </div>
+                    </div>
+                    <div class="code-tab" id="styledTab">
+                        <div class="code-row">
+                            <textarea id="styledCode" readonly></textarea>
+                            <button class="btn-copy" onclick="copyCode('styledCode')">Copy</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

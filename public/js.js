@@ -171,26 +171,14 @@ function displayIcons(icons) {
   grid.innerHTML = icons
     .map(
       (iconClass) => `
-                <div class="icon-card">
+                <div class="icon-card" onclick="openIconModal('${iconClass}')">
                     <div class="icon-to-display">
                         <i class="${iconClass}"></i>
                     </div>
                     <div class="icon-name">${iconClass}</div>
-                    <div class="button-group">
-                        <button class="btn btn-copy" onclick="copyClass('${iconClass}')">
-                            📋 Copy Class
-                        </button>
-                        <button class="btn btn-generate" onclick="generateBasic('${iconClass}')">
-                            🔧 Generate HTML
-                        </button>
-                        <button class="btn btn-styled" onclick="openStyleModal('${iconClass}')">
-                            🎨 Generate Styled
-                        </button>
-                    </div>
                 </div>
             `
-    )
-    .join("");
+    ).join("");
 
   updateStats(icons.length);
 }
@@ -222,11 +210,15 @@ function generateBasic(className) {
     });
 }
 
-// Open style modal
-function openStyleModal(className) {
+// Open icon modal with customization options
+function openIconModal(className) {
   currentIcon = className;
   userHasChangedColor = false;
-  document.getElementById("styleModal").classList.add("active");
+  document.getElementById("iconModal").classList.add("active");
+  
+  // Update modal title with icon name
+  document.getElementById("modalIconName").textContent = className;
+  
   resetModalControls();
   updatePreview();
 }
@@ -249,6 +241,9 @@ function updatePreview() {
   const color = document.getElementById("iconColor").value;
 
   document.getElementById("sizeDisplay").textContent = `${fontSize}px`;
+
+  // Update class display
+  document.getElementById("classDisplay").textContent = currentIcon;
 
   // Update color preview
   if (userHasChangedColor) {
@@ -284,6 +279,38 @@ function updatePreview() {
   document.getElementById("styledCode").value = styledHtml;
 }
 
+// Toggle style customization controls
+function toggleStyleControls() {
+  const styleControlsSection = document.getElementById("styleControlsSection");
+  const toggleBtn = document.querySelector(".btn-styled-toggle");
+  
+  if (styleControlsSection.style.display === "none") {
+    styleControlsSection.style.display = "block";
+    toggleBtn.textContent = "🎨 Hide Customization";
+    toggleBtn.classList.add("active");
+  } else {
+    styleControlsSection.style.display = "none";
+    toggleBtn.textContent = "🎨 Customize Style";
+    toggleBtn.classList.remove("active");
+  }
+}
+
+// Toggle style customization section (deprecated - keeping for compatibility)
+function toggleStyleSection() {
+  toggleStyleControls();
+}
+
+// Switch between code tabs
+function switchTab(tabName) {
+  // Remove active class from all tabs and buttons
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.code-tab').forEach(tab => tab.classList.remove('active'));
+  
+  // Add active class to selected tab and button
+  document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+  document.getElementById(tabName === 'basic' ? 'basicTab' : 'styledTab').classList.add('active');
+}
+
 // Setup event listeners
 function setupEventListeners() {
   // Back button
@@ -291,7 +318,7 @@ function setupEventListeners() {
 
   // Close modal
   document.getElementById("closeModal").addEventListener("click", () => {
-    document.getElementById("styleModal").classList.remove("active");
+    document.getElementById("iconModal").classList.remove("active");
   });
 
   // Reset size to default
@@ -351,9 +378,9 @@ function setupEventListeners() {
   });
 
   // Close modal when clicking outside
-  document.getElementById("styleModal").addEventListener("click", (e) => {
-    if (e.target.id === "styleModal") {
-      document.getElementById("styleModal").classList.remove("active");
+  document.getElementById("iconModal").addEventListener("click", (e) => {
+    if (e.target.id === "iconModal") {
+      document.getElementById("iconModal").classList.remove("active");
     }
   });
 }
