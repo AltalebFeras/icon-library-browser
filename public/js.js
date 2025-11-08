@@ -27,17 +27,24 @@ function displayIconGroups() {
   const groupsGrid = document.getElementById("groupsGrid");
   
   groupsGrid.innerHTML = iconGroups.map(group => `
-    <div class="group-card" onclick="selectIconGroup('${group.id}')">
-      <div class="group-icon">
-        <i class="${group.prefix === 'bi' ? 'bi-star' : group.prefix === 'fa' ? 'fa-star' : 'icon-star'}"></i>
+    <div class="group-card">
+      <div class="group-content" onclick="selectIconGroup('${group.id}')">
+        <div class="group-icon">
+          <i class="${group.prefix === 'bi' ? 'bi-star' : group.prefix === 'fa' ? 'fa-star' : 'icon-star'}"></i>
+        </div>
+        <h3>${group.name}</h3>
+        <p>${group.description}</p>
+        <div class="group-stats">
+          <span class="icon-count">${group.count || 0} icons</span>
+          <span class="status ${group.count > 0 ? 'available' : 'coming-soon'}">
+            ${group.count > 0 ? 'Available' : 'Coming Soon'}
+          </span>
+        </div>
       </div>
-      <h3>${group.name}</h3>
-      <p>${group.description}</p>
-      <div class="group-stats">
-        <span class="icon-count">${group.count || 0} icons</span>
-        <span class="status ${group.count > 0 ? 'available' : 'coming-soon'}">
-          ${group.count > 0 ? 'Available' : 'Coming Soon'}
-        </span>
+      <div class="group-actions">
+        <button class="download-btn" onclick="event.stopPropagation(); downloadLibrary('${group.id}')">
+          📥 Download Library
+        </button>
       </div>
     </div>
   `).join("");
@@ -396,6 +403,38 @@ function goBackToGroups() {
   
   currentGroup = null;
   allIcons = [];
+}
+
+// Download library function
+function downloadLibrary(groupId) {
+  const group = iconGroups.find(g => g.id === groupId);
+  
+  if (!group || !group.downloadPath) {
+    showToast("Download not available for this library");
+    return;
+  }
+
+  // Check if file exists before downloading
+  fetch(group.downloadPath, { method: 'HEAD' })
+    .then(response => {
+      if (response.ok) {
+        // Create download link
+        const link = document.createElement('a');
+        link.href = group.downloadPath;
+        link.download = `${group.name.toLowerCase().replace(/\s+/g, '-')}.zip`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        showToast(`Downloading ${group.name}...`);
+      } else {
+        throw new Error('File not found');
+      }
+    })
+    .catch(error => {
+      console.error('Download error:', error);
+      showToast(`Download not available for ${group.name}`);
+    });
 }
 
 // Initialize on page load

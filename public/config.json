@@ -6,6 +6,7 @@
       "description": "Popular Bootstrap icon set with 1000+ icons",
       "cssPath": "./src/bootstrap-icons/style.css",
       "demoPath": "./src/bootstrap-icons/demo.html",
+      "downloadPath": "./downloads/bootstrap-icons.zip",
       "count": 4158,
       "prefix": "bi"
     },
@@ -15,6 +16,7 @@
       "description": "The world's most popular icon toolkit",
       "cssPath": "./src/fontawesome-icons/style.css",
       "demoPath": "./src/fontawesome-icons/demo.html",
+      "downloadPath": "./downloads/fontawesome-icons.zip",
       "count": 1610,
       "prefix": "fa"
     },
@@ -24,6 +26,7 @@
       "description": "Google's Material Design icons",
       "cssPath": "./src/material-icons/style.css",
       "demoPath": "./src/material-icons/demo.html",
+      "downloadPath": "./downloads/material-icons.zip",
       "count": 0,
       "prefix": "material-icons"
     },
@@ -33,6 +36,7 @@
       "description": "Simply beautiful open source icons",
       "cssPath": "./src/feather-icons/style.css",
       "demoPath": "./src/feather-icons/demo.html",
+      "downloadPath": "./downloads/feather-icons.zip",
       "count": 0,
       "prefix": "feather"
     },
@@ -42,6 +46,7 @@
       "description": "Premium icons for use in web, iOS, Android, and desktop apps",
       "cssPath": "./src/brands-icons/style.css",
       "demoPath": "./src/brands-icons/demo.html",
+      "downloadPath": "./downloads/brands-icons.zip",
       "count": 934,
       "prefix": "icon"
     }
