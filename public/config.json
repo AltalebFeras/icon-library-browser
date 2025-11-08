@@ -21,26 +21,6 @@
       "prefix": "fa"
     },
     {
-      "id": "material-icons",
-      "name": "Material Icons",
-      "description": "Google's Material Design icons",
-      "cssPath": "./src/material-icons/style.css",
-      "demoPath": "./src/material-icons/demo.html",
-      "downloadPath": "./downloads/material-icons.zip",
-      "count": 0,
-      "prefix": "material-icons"
-    },
-    {
-      "id": "feather-icons",
-      "name": "Feather Icons",
-      "description": "Simply beautiful open source icons",
-      "cssPath": "./src/feather-icons/style.css",
-      "demoPath": "./src/feather-icons/demo.html",
-      "downloadPath": "./downloads/feather-icons.zip",
-      "count": 0,
-      "prefix": "feather"
-    },
-    {
       "id": "brands-icons",
       "name": "Brands Icons",
       "description": "Premium icons for use in web, iOS, Android, and desktop apps",
